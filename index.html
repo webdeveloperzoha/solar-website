@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>solarshop | Premium Clean Energy & Solar Solutions</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ক্লায়েন্টের ব্র্যান্ড কালার প্যালেট (নো গ্রে) */
+    :root {
+      --c-forest: #0d381e;       /* ডিপ ফরেস্ট গ্রিন */
+      --c-spring: #5da632;       /* লাইট স্প্রিং গ্রিন */
+      --c-yellow: #f5b016;       /* সোলার সান ইয়েলো */
+      --c-blue: #3f78a8;         /* স্লেট ব্লু */
+      --c-white: #ffffff;        /* পিওর হোয়াইট */
+      --c-sand: #f4f7ee;         /* সফট প্রাকৃতিক আর্থ টোন */
+      --c-warm-light: #fafdf7;   /* লাইট ব্যাকগ্রাউন্ড */
+      --c-text: #0a2614;         /* ডার্ক আর্থ টেক্সট */
+      --c-muted: #2d5438;        /* সাব-টেক্সট */
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --transition: all 0.3s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-main);
+      color: var(--c-text);
+      background-color: var(--c-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ১. হেডার ও মেনুবার (৭টি আইটেম) */
+    header {
+      background-color: var(--c-white);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(13, 56, 30, 0.05);
+      border-bottom: 2px solid var(--c-sand);
+    }
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 84px;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .brand-logo .solar-part { color: var(--c-forest); display: flex; align-items: center; }
+    .brand-logo .sun-circle {
+      display: inline-flex;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(180deg, var(--c-yellow) 50%, var(--c-spring) 50%);
+      border-radius: 50%;
+      margin: 0 2px;
+    }
+    .brand-logo .shop-part { color: var(--c-blue); }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+      align-items: center;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--c-forest);
+      font-weight: 600;
+      font-size: 15px;
+      transition: var(--transition);
+    }
+    nav ul li a:hover { color: var(--c-spring); }
+
+    /* বাটন */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 26px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+    .btn-yellow {
+      background-color: var(--c-yellow);
+      color: var(--c-forest);
+    }
+    .btn-yellow:hover {
+      background-color: #e09f0d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(245, 176, 22, 0.3);
+    }
+    .btn-blue {
+      background-color: var(--c-blue);
+      color: var(--c-white);
+    }
+    .btn-blue:hover {
+      background-color: #31628d;
+      transform: translateY(-2px);
+    }
+    .btn-outline-green {
+      border-color: var(--c-forest);
+      color: var(--c-forest);
+      background-color: transparent;
+    }
+    .btn-outline-green:hover {
+      background-color: var(--c-forest);
+      color: var(--c-white);
+    }
+
+    /* সেকশন কমন টাইটেল */
+    .section-title-wrap {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+    .section-title-wrap h2 {
+      font-size: 38px;
+      color: var(--c-forest);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .section-title-wrap p {
+      font-size: 17px;
+      color: var(--c-muted);
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--c-spring);
+      margin-bottom: 8px;
+    }
+
+    /* ===================================================
+       সেকশন ১: HOME (HERO SECTION)
+    =================================================== */
+    .hero-section {
+      padding: 70px 0 90px;
+      background: linear-gradient(180deg, var(--c-white) 0%, var(--c-sand) 100%);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--c-white);
+      border: 1px solid var(--c-spring);
+      padding: 6px 16px;
+      border-radius: 30px;
+      color: var(--c-forest);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .hero-content h1 {
+      font-size: 52px;
+      line-height: 1.15;
+      color: var(--c-forest);
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+    .hero-content h1 span.blue-highlight { color: var(--c-blue); }
+    .hero-content p {
+      font-size: 18px;
+      color: var(--c-muted);
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+    .hero-actions { display: flex; gap: 16px; margin-bottom: 30px; }
+    
+    .hero-image-box { position: relative; }
+    .hero-image-box img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 28px;
+      border: 4px solid var(--c-white);
+      box-shadow: 0 20px 40px rgba(13, 56, 30, 0.12);
+      display: block;
+      background-color: #e2ecd9;
+    }
+    .floating-card {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: var(--c-white);
+      padding: 16px 24px;
+      border-radius: 16px;
+      border: 2px solid var(--c-spring);
+      box-shadow: 0 12px 25px rgba(13, 56, 30, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .stat-number { font-size: 32px; font-weight: 800; color: var(--c-yellow); }
+    .stat-text { font-size: 13px; font-weight: 700; color: var(--c-forest); }
+
+    /* ট্রাস্ট স্ট্রিপ */
+    .trust-strip {
+      background-color: var(--c-white);
+      padding: 30px 0;
+      border-bottom: 1px solid var(--c-sand);
+    }
+    .trust-strip-inner {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--c-forest);
+    }
+    .trust-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--c-sand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--c-spring);
+      font-size: 18px;
+    }
+
+    /* ===================================================
+       সেকশন ২: RESIDENTIAL (স্বতন্ত্র রেসিডেন্সিয়াল সেকশন)
+    =================================================== */
+    .residential-section {
+      padding: 95px 0;
+      background-color: var(--c-white);
+    }
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+    .split-image img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 3px solid var(--c-sand);
+      box-shadow: 0 16px 36px rgba(13, 56, 30, 0.08);
+      display: block;
+    }
+    .split-content h3 {
+      font-size: 36px;
+      color: var(--c-forest);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+    .split-content p {
+      font-size: 16px;
+      color: var(--c-muted);
+      margin-bottom: 24px;
+    }
+    .feature-list {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+    .feature-list li {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--c-forest);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .feature-list li span {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--c-sand);
+      color: var(--c-spring);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    /* ===================================================
+       সেকশন ৩: COMMERCIAL (স্বতন্ত্র কমার্শিয়াল সেকশন)
+    =================================================== */
+    .commercial-section {
+      padding: 95px 0;
+      background-color: var(--c-sand);
+    }
+    .reverse-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ব্যাটারি ও সার্ভিস হাইলাইট স্ট্রিপ (সার্ভিসেস সাপ্লিমেন্ট) */
+    .battery-banner {
+      margin-top: 55px;
+      background: var(--c-white);
+      border-radius: 24px;
+      padding: 35px 45px;
+      display: grid;
+      grid-template-columns: 180px 1fr auto;
+      gap: 30px;
+      align-items: center;
+      border: 2px solid var(--c-spring);
+      box-shadow: 0 12px 30px rgba(13, 56, 30, 0.05);
+    }
+    .battery-banner img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    /* ===================================================
+       সেকশন ৪: HOW IT WORKS (৪-স্টেপ প্রসেস)
+    =================================================== */
+    .process-section {
+      padding: 95px 0;
+      background: var(--c-white);
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .process-step {
+      background: var(--c-warm-light);
+      padding: 30px 22px;
+      border-radius: 18px;
+      border-top: 4px solid var(--c-spring);
+      box-shadow: 0 4px 15px rgba(13, 56, 30, 0.03);
+    }
+    .step-number {
+      width: 44px;
+      height: 44px;
+      background: var(--c-forest);
+      color: var(--c-yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    .process-step h4 { font-size: 18px; color: var(--c-forest); margin-bottom: 8px; }
+    .process-step p { font-size: 14px; color: var(--c-muted); }
+
+    /* ===================================================
+       সেকশন ৫: REVIEWS (টেস্টোমনিয়াল ও কাস্টমার রেটিং)
+    =================================================== */
+    .testimonial-section {
+      padding: 95px 0;
+      background: var(--c-sand);
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+    .testimonial-card {
+      background: var(--c-white);
+      padding: 32px;
+      border-radius: 20px;
+      border-left: 5px solid var(--c-blue);
+      box-shadow: 0 10px 25px rgba(13, 56, 30, 0.04);
+    }
+    .stars { color: var(--c-yellow); font-size: 18px; margin-bottom: 12px; }
+    .testimonial-card p { font-size: 15px; color: var(--c-forest); margin-bottom: 18px; font-style: italic; }
+    .author-info { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--c-sand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--c-forest);
+    }
+    .author-name { font-size: 15px; font-weight: 700; color: var(--c-forest); }
+    .author-desc { font-size: 12px; color: var(--c-blue); }
+
+    /* ===================================================
+       সেকশন ৬: ABOUT (কোম্পানির ভিশন, ট্রাস্ট ও পরিসংখ্যান)
+    =================================================== */
+    .about-section {
+      padding: 95px 0;
+      background: var(--c-white);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .about-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .stat-box {
+      background: var(--c-warm-light);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(93, 166, 50, 0.25);
+      text-align: center;
+    }
+    .stat-box h3 { font-size: 40px; font-weight: 800; color: var(--c-forest); margin-bottom: 6px; }
+    .stat-box p { font-size: 14px; font-weight: 700; color: var(--c-muted); }
+
+    /* ===================================================
+       সেকশন ৭: GET A FREE QUOTE (প্রপোজাল ও ইনকোয়ারি ফর্ম)
+    =================================================== */
+    .inquiry-section {
+      padding: 95px 0;
+      background: var(--c-sand);
+    }
+    .inquiry-box {
+      background: var(--c-forest);
+      border-radius: 28px;
+      padding: 55px;
+      color: var(--c-white);
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 50px;
+      align-items: center;
+      box-shadow: 0 25px 50px rgba(13, 56, 30, 0.15);
+    }
+    .inquiry-info h2 { font-size: 38px; line-height: 1.2; margin-bottom: 18px; color: var(--c-white); }
+    .inquiry-info h2 span { color: var(--c-yellow); }
+    .inquiry-info p { font-size: 16px; color: #d1e3d3; margin-bottom: 25px; }
+    .trust-bullets { list-style: none; }
+    .trust-bullets li { font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #e5f1e7; }
+    .check-circle {
+      background: var(--c-spring);
+      color: var(--c-forest);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .form-wrapper {
+      background: var(--c-white);
+      padding: 35px;
+      border-radius: 20px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--c-forest); margin-bottom: 6px; }
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #c7d8c6;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--c-forest);
+      outline: none;
+      background: var(--c-warm-light);
+    }
+    .form-control:focus {
+      border-color: var(--c-spring);
+      box-shadow: 0 0 0 3px rgba(93, 166, 50, 0.2);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* ফুটার */
+    footer {
+      background: var(--c-forest);
+      color: #e5f1e7;
+      padding: 60px 0 30px;
+      border-top: 4px solid var(--c-spring);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .footer-col h5 { color: var(--c-yellow); font-size: 17px; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; font-size: 14px; }
+    .footer-col ul li a { color: #d1e3d3; text-decoration: none; }
+    .footer-col ul li a:hover { color: var(--c-yellow); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #a8caa8;
+    }
+
+    /* রেসপনসিভ মিডিয়া কুয়েরি */
+    @media (max-width: 992px) {
+      .hero-grid, .split-grid, .about-grid, .inquiry-box { grid-template-columns: 1fr; }
+      .process-grid, .testimonial-grid { grid-template-columns: 1fr 1fr; }
+      .battery-banner { grid-template-columns: 1fr; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .floating-card { position: static; margin-top: 20px; }
+    }
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .hero-content h1 { font-size: 38px; }
+      .process-grid, .testimonial-grid, .about-stats-grid, .footer-grid, .form-row { grid-template-columns: 1fr; }
+      .inquiry-box { padding: 30px 20px; }
+      .form-wrapper { padding: 25px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ১. ন্যাভিগেশন বার (হেডারে পূর্ণাঙ্গ ৭টি মেনু লিংক) -->
+  <header>
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="#home" class="brand-logo">
+          <span class="solar-part">s<span class="sun-circle"></span>lar</span><span class="shop-part">shop</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#residential">Residential</a></li>
+            <li><a href="#commercial">Commercial</a></li>
+            <li><a href="#process">How It Works</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#quote" class="btn btn-yellow" style="padding: 10px 22px;">Get a Free Quote</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       ১ম সেকশন: HOME (HERO SECTION)
+  ============================================== -->
+  <section class="hero-section" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="badge-pill">☀️ Clean, Reliable Energy Independence</div>
+          <h1>Harness the Sun. <br><span class="blue-highlight">Power Your Life.</span></h1>
+          <p>Cut your electricity bills by up to 70% with bespoke residential and commercial solar installations, backed by 25 years of guaranteed peak performance.</p>
+          <div class="hero-actions">
+            <a href="#quote" class="btn btn-yellow">Calculate Savings</a>
+            <a href="#residential" class="btn btn-blue">Explore Solutions</a>
+          </div>
+        </div>
+        
+        <div class="hero-image-box">
+          <!-- আপনার সংরক্ষিত হিরো ইমেজ -->
+          <img src="images/hero.jpg" alt="Residential solar rooftop installation under bright natural daylight">
+          <div class="floating-card">
+            <div class="stat-number">25+</div>
+            <div class="stat-text">Years Performance<br>Tier-1 Guaranteed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ট্রাস্ট স্ট্রিপ -->
+  <div class="trust-strip">
+    <div class="container">
+      <div class="trust-strip-inner">
+        <div class="trust-item"><span class="trust-icon">✔</span> Tier-1 High Output Panels</div>
+        <div class="trust-item"><span class="trust-icon">⚡</span> Zero-Downtime Battery Systems</div>
+        <div class="trust-item"><span class="trust-icon">★</span> 4.9/5 Rating (1,200+ Installations)</div>
+        <div class="trust-item"><span class="trust-icon">🛡️</span> Clean Energy Council Certified</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       ২য় সেকশন: RESIDENTIAL (আবাসিক সোলার সল্যুশন)
+  ============================================== -->
+  <section class="residential-section" id="residential">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-tag">Residential Solar</span>
+        <h2>Clean Energy Engineered for Your Home</h2>
+        <p>Protect your family from rising utility bills with premium, aesthetically integrated rooftop solar arrays.</p>
+      </div>
+      <div class="split-grid">
+        <div class="split-image">
+          <!-- আপনার সংরক্ষিত রেসিডেন্সিয়াল ইমেজ -->
+          <img src="images/residential.jpg" alt="Suburban residential solar rooftop">
+        </div>
+        <div class="split-content">
+          <h3>Custom Rooftop Installations Built for Maximum Efficiency</h3>
+          <p>Our residential setups are designed around your family's lifestyle and energy demands. Gain energy independence while significantly reducing your monthly electricity spend.</p>
+          <ul class="feature-list">
+            <li><span>✓</span> Ultra-high output Monocrystalline Tier-1 solar modules</li>
+            <li><span>✓</span> Seamless smart net-metering connection with your power grid</li>
+            <li><span>✓</span> Clean, unobtrusive installation preserving your home's roof aesthetics</li>
+            <li><span>✓</span> Real-time smartphone monitoring to track solar yields 24/7</li>
+          </ul>
+          <a href="#quote" class="btn btn-yellow">Get Residential Estimate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       ৩য় সেকশন: COMMERCIAL (বাণিজ্যিক ও শিল্প সোলার)
+  ============================================== -->
+  <section class="commercial-section" id="commercial">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-tag">Commercial & Industrial</span>
+        <h2>High-Yield Solar Power for Business Growth</h2>
+        <p>Substantially slash operating overheads, boost bottom-line margins, and meet ESG goals with heavy-duty commercial solar.</p>
+      </div>
+      <div class="split-grid reverse-grid">
+        <div class="split-content">
+          <h3>Turn Idle Rooftop Space into a Long-Term Profit Engine</h3>
+          <p>From manufacturing hubs and warehouses to office buildings, our commercial solar arrays deliver dependable, heavy-load output with lightning-fast return on investment.</p>
+          <ul class="feature-list">
+            <li><span>✓</span> Accelerated payback periods averaging under 3 to 4 years</li>
+            <li><span>✓</span> High-efficiency commercial grid inverters engineered for peak loads</li>
+            <li><span>✓</span> Zero-downtime installation ensuring ongoing operations remain uninterrupted</li>
+            <li><span>✓</span> Comprehensive asset management, warranty & maintenance coverage</li>
+          </ul>
+          <a href="#quote" class="btn btn-blue">Request Business Quote</a>
+        </div>
+        <div class="split-image">
+          <!-- আপনার সংরক্ষিত কমার্শিয়াল ইমেজ -->
+          <img src="images/commercial.jpg" alt="Commercial warehouse solar panel setup">
+        </div>
+      </div>
+
+      <!-- ব্যাটারি স্টোরেজ হাইলাইট ব্যানার -->
+      <div class="battery-banner">
+        <!-- আপনার সংরক্ষিত ব্যাটারি ইমেজ -->
+        <img src="images/battery.jpg" alt="Home solar battery storage system">
+        <div>
+          <h4 style="font-size: 20px; color: var(--c-forest); margin-bottom: 6px;">Looking for 24/7 Battery Storage?</h4>
+          <p style="font-size: 14px; color: var(--c-muted);">Store excess daylight power and run your property round-the-clock with zero blackout risk.</p>
+        </div>
+        <div>
+          <a href="#quote" class="btn btn-outline-green" style="padding: 10px 22px;">Add Battery Backup</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       ৪র্থ সেকশন: HOW IT WORKS (৪-ধাপের প্রক্রিয়া)
+  ============================================== -->
+  <section class="process-section" id="process">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-tag">Our Process</span>
+        <h2>Your Simple Path to Solar Energy</h2>
+        <p>A transparent four-step process guaranteeing a smooth, safe, and professional setup from start to finish.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h4>Site Evaluation</h4>
+          <p>We review your bills and utilize satellite analysis to gauge your roof's sun yield.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h4>3D Custom Design</h4>
+          <p>Tailor-engineered layout created to capture peak sun rays across all seasons.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h4>Swift Installation</h4>
+          <p>Our certified technicians connect and test the full array safely within 48 hours.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h4>Turn On & Save</h4>
+          <p>Switch your meters on and begin saving clean cash immediately on bill one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       ৫ম সেকশন: REVIEWS (গ্রাহক পর্যালোচনা ও প্রমাণ)
+  ============================================== -->
+  <section class="testimonial-section" id="reviews">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-tag">Client Testimonials</span>
+        <h2>Trusted by Real Homeowners & Businesses</h2>
+        <p>Discover how everyday property owners made the switch with solarshop and simplified their energy bills.</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Our summer electricity bills plummeted by over $230 in our very first billing cycle. The team was prompt, polite, and tidy."</p>
+          <div class="author-info">
+            <div class="author-avatar">MR</div>
+            <div>
+              <div class="author-name">Marcus Reynolds</div>
+              <div class="author-desc">6.6kW Residential Rooftop Owner</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"The quote calculation was exact to the cent with no hidden installation add-ons. solarshop made the solar transition completely effortless."</p>
+          <div class="author-info">
+            <div class="author-avatar">SC</div>
+            <div>
+              <div class="author-name">Sarah Jenkins</div>
+              <div class="author-desc">Homeowner & Battery Storage Client</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Our workshop runs heavy machinery and the commercial setup trimmed our overhead drastically. Extraordinary engineering and speed."</p>
+          <div class="author-info">
+            <div class="author-avatar">DL</div>
+            <div>
+              <div class="author-name">David Lawson</div>
+              <div class="author-desc">Commercial Hub Owner</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       ৬ষ্ঠ সেকশন: ABOUT (কোম্পানির পরিচিতি ও পরিসংখ্যান)
+  ============================================== -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <span class="section-tag">About solarshop</span>
+          <h2 style="font-size: 38px; color: var(--c-forest); font-weight: 800; line-height: 1.2; margin-bottom: 20px;">
+            Pioneering Honest, High-Quality Clean Energy Solutions
+          </h2>
+          <p style="font-size: 16px; color: var(--c-muted); margin-bottom: 20px;">
+            At <strong>solarshop</strong>, our mission is simple: to make renewable power accessible, transparent, and undeniably profitable for families and commercial properties alike.
+          </p>
+          <p style="font-size: 16px; color: var(--c-muted); margin-bottom: 30px;">
+            Unlike mass-market sales companies, we are engineers and certified installers dedicated to tailored excellence. We test every component to ensure maximum daytime yields for decades to come.
+          </p>
+          <a href="#quote" class="btn btn-outline-green">Work With Us</a>
+        </div>
+        <div class="about-stats-grid">
+          <div class="stat-box">
+            <h3>1,200+</h3>
+            <p>Clean Installations Completed</p>
+          </div>
+          <div class="stat-box">
+            <h3 style="color: var(--c-yellow);">25 Yrs</h3>
+            <p>Guaranteed Panel Performance</p>
+          </div>
+          <div class="stat-box">
+            <h3 style="color: var(--c-blue);">$4.2M+</h3>
+            <p>Client Energy Costs Saved</p>
+          </div>
+          <div class="stat-box">
+            <h3>99.8%</h3>
+            <p>Uptime & System Reliability</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       ৭ম সেকশন: GET A FREE QUOTE (ইনকোয়ারি ও ফর্ম)
+  ============================================== -->
+  <section class="inquiry-section" id="quote">
+    <div class="container">
+      <div class="inquiry-box">
+        <div class="inquiry-info">
+          <h2>Ready to Switch? <br><span>Request Your Free Proposal</span></h2>
+          <p>Join hundreds of homeowners and businesses cutting their monthly bills with solarshop. Complete the details for an obligation-free savings estimate.</p>
+          <ul class="trust-bullets">
+            <li><span class="check-circle">✓</span> 100% Free Consultation & Site Evaluation</li>
+            <li><span class="check-circle">✓</span> Detailed Financial ROI & Payback Report</li>
+            <li><span class="check-circle">✓</span> Zero Pressure, Transparent Fixed Pricing</li>
+          </ul>
+        </div>
+        <div class="form-wrapper">
+          <form onsubmit="alert('ধন্যবাদ! আপনার কোটেশন রিকোয়েস্ট সফলভাবে জমা হয়েছে। আমাদের টিম দ্রুত আপনার সাথে যোগাযোগ করবে।'); return false;">
+            <div class="form-group">
+              <label for="fname">Full Name *</label>
+              <input type="text" id="fname" class="form-control" placeholder="e.g. John Doe" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="femail">Email Address *</label>
+                <input type="email" id="femail" class="form-control" placeholder="john@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="fphone">Phone Number</label>
+                <input type="tel" id="fphone" class="form-control" placeholder="+1 (555) 000-0000">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ptype">Installation Type</label>
+                <select id="ptype" class="form-control">
+                  <option>Residential Home</option>
+                  <option>Commercial Business</option>
+                  <option>Battery Storage Only</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bill">Avg. Monthly Bill</label>
+                <input type="text" id="bill" class="form-control" placeholder="e.g. $180 / month">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-yellow" style="width: 100%; border-radius: 10px; margin-top: 10px;">Send My Free Quote Request</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ফুটার -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 16px;">
+            <span class="solar-part" style="color: #ffffff;">s<span class="sun-circle"></span>lar</span><span class="shop-part" style="color: var(--c-yellow);">shop</span>
+          </div>
+          <p style="font-size: 14px; color: #bed3bf;">Dedicated to powering clean communities through dependable, cost-efficient solar installations and battery systems.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Solutions</h5>
+          <ul>
+            <li><a href="#residential">Residential Rooftops</a></li>
+            <li><a href="#commercial">Commercial Systems</a></li>
+            <li><a href="#commercial">Battery Storage</a></li>
+            <li><a href="#residential">Net-Metering Setup</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#about">About Our Mission</a></li>
+            <li><a href="#process">Our 4-Step Process</a></li>
+            <li><a href="#reviews">Verified Reviews</a></li>
+            <li><a href="#quote">Warranty Protection</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="tel:1800SOLARSHOP">📞 1-800-SOLAR-SHOP</a></li>
+            <li><a href="mailto:info@solarshop.com">✉️ info@solarshop.com</a></li>
+            <li><span style="font-size: 14px; color: #bed3bf;">📍 Daylight Clean Hub, Suite 200</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 solarshop. All rights reserved. Clean Energy Specialists.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
